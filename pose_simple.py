@@ -271,17 +271,14 @@ def main():
             st.write("### 🖼️ Asset Preview")
             
             if image_loader:
-                # Show first few assets as preview
-                preview_count = min(3, len(image_loader))
-                for i, (asset_name, asset_url) in enumerate(list(image_loader.items())[:preview_count]):
+                # Show ALL assets instead of just first 3
+                for asset_name, asset_url in image_loader.items():
                     st.write(f"**{asset_name}**")
                     try:
                         st.image(asset_url, width=150)
                     except:
                         st.write("Preview unavailable")
-                
-                if len(image_loader) > preview_count:
-                    st.write(f"... and {len(image_loader) - preview_count} more assets")
+                    st.write("---")  # Add separator between images
             else:
                 st.info("No assets to preview yet.")
     
